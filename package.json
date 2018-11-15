@@ -1,0 +1,18 @@
+{
+  "name": "pupeteer_tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test-setup": "jest --init"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^23.6.0",
+    "jest-environment-puppeteer": "^3.5.1",
+    "jest-puppeteer": "^3.5.1",
+    "puppeteer": "^1.10.0"
+  }
+}
