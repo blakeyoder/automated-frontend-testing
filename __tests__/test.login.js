@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const crypto = require('crypto');
+const {testUser} = require('../fixtures/user_fixtures');
 
 describe('Lendly e2e loan flow', () => {
   beforeAll(async () => {
@@ -54,20 +55,18 @@ describe('Lendly e2e loan flow', () => {
       console.log('Selecting `no`. Im not military...'),
       page.waitForNavigation({waitUntil: 'load'}),
     ]);
-
-    const usernameSuffix = crypto.randomBytes(8).toString('hex'); 
-    const username = `test-runner__${usernameSuffix}@tester.com`;
-    const password = crypto.randomBytes(16).toString('hex'); 
+    const {username, password} = testUser;
 
     await page.type('#emailAddress', username, {delay: 50});
     await page.type('#pwd', password, {delay: 50});
-    console.log({username, password});
 
     await Promise.all([
       page.click('.btn-icon--arrow'),
       console.log('Creating new account...'),
       page.waitForNavigation({waitUntil: 'load'}),
     ]);
+
+    console.log(`Created user with creds: ${JSON.stringify({username, password})}`);
 
     done();
 
